@@ -682,16 +682,12 @@ def download_thanks(request):
             template = 'firefox/campaign/berlin/scene2-privat.html'
         elif experience == 'auf-deiner-seite':
             template = 'firefox/campaign/berlin/scene2-auf-deiner-seite.html'
-        elif lang_file_is_active('firefox/new/trailhead', locale):
-            template = 'firefox/new/trailhead/thanks.html'
         else:
-            template = 'firefox/new/scene2.html'
+            template = 'firefox/new/trailhead/thanks.html'
     elif locale == 'en-US' and experience == 'betterbrowser':
         template = 'firefox/campaign/better-browser/scene2.html'
-    elif lang_file_is_active('firefox/new/trailhead', locale):
-        template = 'firefox/new/trailhead/thanks.html'
     else:
-        template = 'firefox/new/scene2.html'
+        template = 'firefox/new/thanks.html'
 
     return l10n_utils.render(request, template, {'show_newsletter': show_newsletter})
 
@@ -727,10 +723,8 @@ def new(request):
     else:
         if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/yandex/scene1.html'
-        elif lang_file_is_active('firefox/new/trailhead', locale):
-            template = 'firefox/new/trailhead/download.html'
         else:
-            template = 'firefox/new/scene1.html'
+            template = 'firefox/new/download.html'
 
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)

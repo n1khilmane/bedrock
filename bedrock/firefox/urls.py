@@ -121,9 +121,9 @@ urlpatterns = (
     page('firefox/this-browser-comes-highly-recommended', 'firefox/recommended.html'),
 
     # Issue 6604, SEO firefox/new pages
-    page('firefox/windows', 'firefox/new/scene1_windows.html'),
-    page('firefox/mac', 'firefox/new/scene1_mac.html'),
-    page('firefox/linux', 'firefox/new/scene1_linux.html'),
+    page('firefox/windows', 'firefox/new/platform/download_windows.html'),
+    page('firefox/mac', 'firefox/new/platform/download_mac.html'),
+    page('firefox/linux', 'firefox/new/platform/download_linux.html'),
 
     page('firefox/windows-64-bit', 'firefox/windows-64-bit.html'),
 

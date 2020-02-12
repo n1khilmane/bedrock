@@ -1,0 +1,119 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import fxa_link_fragment, fxa_email_form with context %}
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_new_download') }}
+{% endblock %}
+
+{% block content %}
+<main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+
+  <section class="mzp-c-hero mzp-has-image mzp-t-dark mzp-has-image">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <div class="mzp-c-hero-title">
+          {% block main_title %}
+            <header>
+              <h1>{{ _('The new <strong>Firefox</strong>') }}</h1>
+              <h2>{{ _('Fast for good.') }}</h2>
+            </header>
+          {% endblock %}
+        </div>
+
+        {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, download_location='primary cta') }}
+
+        <ul class="small-links desktop">
+          <li><button class="platform-modal-button js-platform-modal-button hidden" type="button">{{_('Advanced install options & other platforms') }}</button></li>
+          <li><a href="{{ firefox_url('desktop', 'all') }}">{{_('Download in another language') }}</a></li>
+          {% if l10n_has_tag('fxnew_account_032019') %}
+            <li><a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fix-problem-link">{{ _('Fix a problem') }}</a></li>
+          {% endif %}
+          <li><a rel="external" href="https://support.mozilla.org/products/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+        </ul>
+
+        <ul class="small-links android">
+          <li><a href="{{ firefox_url('android', 'all') }}">{{_('Download in another language') }}</a></li>
+          <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+        </ul>
+
+        <ul class="small-links ios">
+          <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="mzp-c-hero-image">
+      <img src="{{ static('img/firefox/new/trailhead/browser-window.svg') }}" alt="">
+    </div>
+  </section>
+
+
+  <section class="features">
+    <ul class="mzp-l-card-third mzp-l-content">
+      {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever'), class='faster') }}
+      {{ picto_card(title=_('Lightweight'), desc=_('Uses 30% less memory than Chrome'), class='lighter') }}
+      {% if l10n_has_tag('truly_removal_2019') %}
+          {% set private_desc = _('Private Browsing with Tracking Protection') %}
+        {% else %}
+          {% set private_desc = _('Truly Private Browsing with Tracking Protection') %}
+        {% endif %}
+      {{ picto_card(title=_('Powerfully private'), desc=private_desc, class='private') }}
+    </ul>
+  </section>
+</main>
+
+<aside class="mzp-u-modal-content other-platforms-content">
+    <section class="section-other-platforms">
+      <h4>{{ _('Advanced Install Options & Other Platforms') }}</h4>
+
+      {{ download_firefox_desktop_list(force_full_installer=True) }}
+
+      <ul class="other-platforms-mobile">
+        <li class="android">
+          {{ google_play_button(extra_data_attributes={'download-location': 'other'}) }}
+        </li>
+        <li class="ios">
+          <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-current-platform">
+      {# L10n: span's below are for visual formatting and line break. #}
+      <h4 class="other-platforms-title heading-windows">{{_('Download Firefox <span>for Windows</span>') }}</h4>
+      <h4 class="other-platforms-title heading-mac">{{_('Download Firefox <span>for macOS</span>') }}</h4>
+      <h4 class="other-platforms-title heading-linux">{{_('Download Firefox <span>for Linux</span>') }}</h4>
+
+      {{ download_firefox(dom_id='download-other-platforms-modal', alt_copy=_('Download Now'), locale_in_transition=True, download_location='other') }}
+    </section>
+</aside>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_new_download') }}
+
+  {% if l10n_has_tag('join_firefox_072019') %}
+    {{ js_bundle('firefox_new_download_join_modal') }}
+  {% endif %}
+
+  {% if switch('stub-attribution-macos') %}
+    {{ js_bundle('stub-attribution-macos') }}
+  {% endif %}
+{% endblock %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/software/firefox-browser-software.json' %}
+{% endblock %}
