@@ -4,16 +4,62 @@
 
 {% from "macros.html" import google_play_button with context %}
 {% from "macros.html" import fxa_link_fragment, fxa_email_form with context %}
-{% from "macros-protocol.html" import hero, picto_card with context %}
+{% from "macros-protocol.html" import picto_card with context %}
 
 {% add_lang_files "firefox/new/quantum" %}
 
 {% extends "firefox/new/base.html" %}
 
+{# meta #}
+{% set meta_title = meta_title or _('Download Firefox') %}
+{% set meta_desc = meta_desc or _('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!') %}
+{% set og_title = og_title or _('Download the fastest Firefox ever') %}
+{% set og_desc = og_desc or _('Faster page loading, less memory usage and packed with features, the new Firefox is here.') %}
+
+{# hero #}
+{% set hero_title = hero_title or _('The new <strong>Firefox</strong>') %}
+{% set hero_tagline = hero_tagline or _('Fast for good.') %}
+
+{# card1 #}
+{% set card1_title = card1_title or _('2x Faster') %}
+{% set card1_desc = card1_desc or _('The best Firefox ever') %}
+{% set card1_class = card1_class or 'faster' %}
+
+{# card2 #}
+{% set card2_title = card2_title or _('Lightweight') %}
+{% set card2_desc = card2_desc or _('Uses 30% less memory than Chrome') %}
+{% set card2_class = card2_class or 'lighter' %}
+
+{# card3 #}
+{% set card3_title = card3_title or _('Powerfully private') %}
+{% if card3_desc is not defined %}
+  {% if l10n_has_tag('truly_removal_2019') %}
+    {% set card3_desc = _('Private Browsing with Tracking Protection') %}
+  {% else %}
+    {% set card3_desc = _('Truly Private Browsing with Tracking Protection') %}
+  {% endif %}
+{% endif %}
+{% set card3_class = card3_class or 'private' %}
+
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('firefox_new_download') }}
 {% endblock %}
+
+{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+
+{%- block page_title -%}{{_('Free Web Browser')}}{%- endblock -%}
+
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{%- block page_title_suffix -%}
+  {% if LANG == 'en-CA' %}
+    — Mozilla (CA)
+  {% elif LANG == 'en-GB' %}
+    — Mozilla (UK)
+  {% else %}
+    — Mozilla
+  {% endif %}
+{%- endblock -%}
 
 {% block content %}
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
@@ -24,8 +70,8 @@
         <div class="mzp-c-hero-title">
           {% block main_title %}
             <header>
-              <h1>{{ _('The new <strong>Firefox</strong>') }}</h1>
-              <h2>{{ _('Fast for good.') }}</h2>
+              <h1>{{ hero_title }}</h1>
+              <h2>{{ hero_tagline }}</h2>
             </header>
           {% endblock %}
         </div>
@@ -58,17 +104,11 @@
     </div>
   </section>
 
-
   <section class="features">
     <ul class="mzp-l-card-third mzp-l-content">
-      {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever'), class='faster') }}
-      {{ picto_card(title=_('Lightweight'), desc=_('Uses 30% less memory than Chrome'), class='lighter') }}
-      {% if l10n_has_tag('truly_removal_2019') %}
-          {% set private_desc = _('Private Browsing with Tracking Protection') %}
-        {% else %}
-          {% set private_desc = _('Truly Private Browsing with Tracking Protection') %}
-        {% endif %}
-      {{ picto_card(title=_('Powerfully private'), desc=private_desc, class='private') }}
+      {{ picto_card(title=card1_title, desc=card1_desc, class=card1_class) }}
+      {{ picto_card(title=card2_title, desc=card2_desc, class=card2_class) }}
+      {{ picto_card(title=card3_title, desc=card3_desc, class=card3_class) }}
     </ul>
   </section>
 </main>
@@ -104,10 +144,6 @@
 
 {% block js %}
   {{ js_bundle('firefox_new_download') }}
-
-  {% if l10n_has_tag('join_firefox_072019') %}
-    {{ js_bundle('firefox_new_download_join_modal') }}
-  {% endif %}
 
   {% if switch('stub-attribution-macos') %}
     {{ js_bundle('stub-attribution-macos') }}
