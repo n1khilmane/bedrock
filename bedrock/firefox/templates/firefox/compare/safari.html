@@ -52,7 +52,7 @@
       <table class="mzp-u-data-table compare-table compare-table--details">
           <thead>
             <tr>
-              <th>{{ _('Privacy') }}</th>
+              <th>{{ _('Security and Privacy') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="{{ _('Safari') }}"></th>
             </tr>
@@ -103,7 +103,7 @@
 
       <p>
         {% trans attrs='href="https://addons.mozilla.org/firefox/addon/facebook-container/" rel="external noopener" data-cta-text="Facebook Container" data-cta-type="link"'|safe %}
-        Our Private Browsing mode blocks trackers and erases your passwords, cookies and history every time you close it. But you can also experience our advanced privacy features even in regular browsing mode. With the latest edition of Firefox, enhanced tracking prevention is turned on by default. This prevents things like cross-site trackers from following you as you jump around the web. Also, with Facebook being caught out almost daily for privacy problems, our <a {{ attrs }}>Facebook Container</a> extension makes a lot of sense. It makes it harder for Facebook to track you around the web – similar to what Safari does to prevent cross-site tracking – but Firefox actually isolates your Facebook session into a separate container blocking Facebook from tracking what you do on other websites. Why do they need to know what you look up on WebMD anyway?
+        Our Private Browsing mode blocks trackers and erases your passwords, cookies and history every time you close it. But you can also experience our advanced privacy features even in regular browsing mode. With the latest edition of Firefox, enhanced tracking prevention is turned on by default. This prevents things like cross-site trackers from following you as you jump around the web. Also, with Facebook being caught out almost daily for privacy problems, our <a {{ attrs }}>Facebook Container</a> extension makes a lot of sense. It makes it harder for Facebook to track you around the web — similar to what Safari does to prevent cross-site tracking — but Firefox actually isolates your Facebook session into a separate container blocking Facebook from tracking what you do on other websites. Why do they need to know what you look up on WebMD anyway?
         {% endtrans %}
       </p>
 
@@ -276,19 +276,20 @@
 
       <p>
         {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts')) %}
-        Firefox also offers a similar sync feature when you sign up for a free <a {{ attrs }}>Firefox Account</a>, that enables users to easily synchronize their bookmarks, browsing history, preferences, passwords, filled forms, add-ons, and the last 25 opened tabs across multiple computers. What sets Firefox apart from Safari is that it is available on any desktop or mobile platform, iOS, Android, Windows or macOS, boosting its portability across any device you may own.
+        Firefox also offers a similar sync feature when you sign up for a free <a {{ attrs }}>Firefox Account</a> that enables users to easily synchronize their bookmarks, browsing history, preferences, passwords, filled forms, add-ons, and the last 25 opened tabs across multiple computers. What sets Firefox apart from Safari is that it is available on any desktop or mobile platform, iOS, Android, Windows or macOS, boosting its portability across any device you may own.
         {% endtrans %}
       </p>
 
       <p>
-        {% trans ios='href="https://apps.apple.com/app/firefox-private-safe-browser/id989804926" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe, android='href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe %}
+        {% trans ios='href="https://apps.apple.com/app/firefox-private-safe-browser/id989804926" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe,
+            android='href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe %}
         The Firefox app for <a {{ ios }}>iOS</a> and <a {{ android }}>Android</a> is one of the fastest browsers available and also has solid security and anti-tracking features — a huge plus if you’re constantly bouncing between a laptop and mobile devices.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Since Safari is Apple's proprietary web browser, its iCloud syncing works exclusively with Apple products. This can be somewhat limiting if, for example, you’re both an Android user and an iPhone user or if you have a Windows based PC for work but use an iPhone as your personal device.
+        Since Safari is Apple’s proprietary web browser, its iCloud syncing works exclusively with Apple products. This can be somewhat limiting if, for example, you’re both an Android user and an iPhone user or if you have a Windows based PC for work but use an iPhone as your personal device.
         {% endtrans %}
       </p>
 
@@ -303,7 +304,7 @@
 
       <p>
         {% trans attrs='href="https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/" rel="external noopener" data-cta-text="Enhanced Tracking Protection (ETP)" data-cta-type="link"'|safe %}
-        Safari does a great job of making the browsing experience simple, fast, and seamless if you’re an Apple user with multiple Apple products. Like Safari, Firefox is a fast and utilitarian browser, but privacy and cross-platform compatibility are our defining features. Firefox updates each month with new features and functionality. For example, one recent browser switched on our <a {{ attrs }}>Enhanced Tracking Protection (ETP)</a> by default for new users, which effectively blocks cookies and cross-site trackers.
+        Safari does a great job of making the browsing experience simple, fast, and seamless if you’re an Apple user with multiple Apple products. Like Safari, Firefox is a fast and utilitarian browser, but privacy and cross-platform compatibility are our defining features. Firefox updates each month with new features and functionality. For example, one recent update switched on our <a {{ attrs }}>Enhanced Tracking Protection (ETP)</a> by default for new users, which effectively blocks cookies and cross-site trackers.
         {% endtrans %}
       </p>
 

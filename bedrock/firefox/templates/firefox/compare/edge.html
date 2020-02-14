@@ -58,7 +58,7 @@
       <table class="mzp-u-data-table compare-table compare-table--details">
           <thead>
             <tr>
-              <th>{{ _('Privacy') }}</th>
+              <th>{{ _('Security and Privacy') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="{{ _('Microsoft Edge') }}"></th>
             </tr>
@@ -108,7 +108,7 @@
       <img src="{{ static('img/firefox/compare/compare-privacy-eyes.svg') }}" alt="" height="217" width="320" class="compare-details-image">
 
       <p>
-        {% trans attrs='href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop#w_how-to-tell-when-firefox-is-protecting-you" rel="external noopener" data-cta-text="Privacy Protections" data-cta-type="link"'|safe %}
+        {% trans attrs='href="%s" data-cta-text="Privacy Protections" data-cta-type="link"'|safe|format(url('firefox.privacy.products')) %}
         Your <a {{ attrs }}>Privacy Protections</a> shows you the trackers and cookies that pages have attempted to leave, and how many Firefox has blocked for you.
         {% endtrans %}
       </p>
@@ -228,7 +228,7 @@
       </p>
 
       <p>
-        {% trans attrs='href="https://support.mozilla.org/kb/content-blocking" rel="external noopener" data-cta-text="Content Blocking" data-cta-type="link"'|safe%}
+        {% trans attrs='href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop" rel="external noopener" data-cta-text="Enhanced Tracking Protection" data-cta-type="link"'|safe %}
         Firefox also includes lots of handy built-in features by default like <a {{ attrs }}>Enhanced Tracking Protection</a>, a built-in screenshot tool, large file sending and more.
         {% endtrans %}
       </p>

@@ -64,7 +64,7 @@
       <table class="mzp-u-data-table compare-table compare-table--details">
           <thead>
             <tr>
-              <th>{{ _('Privacy') }}</th>
+              <th>{{ _('Security and Privacy') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/ie/logo-ie.png') }}" height="36" width="36" alt="{{ _('Internet Explorer') }}"></th>
             </tr>
@@ -94,8 +94,8 @@
         </table>
 
       <p>
-        {% trans %}
-        If you haven’t moved on from using Internet Explorer, the security risk factor alone should be enough to convince you. Microsoft’s own security chief has warned millions of people who continue to use Internet Explorer as their main web browser that they are placing themselves in “peril.”
+        {% trans attrs='href="https://www.telegraph.co.uk/technology/2019/02/08/stop-using-internet-explorer-warns-microsofts-security-chief/" rel="external noopener" data-cta-type="link" data-cta-name="Microsoft security chief warned"'|safe %}
+        If you haven’t moved on from using Internet Explorer, the security risk factor alone should be enough to convince you. <a {{ attrs }}>Microsoft’s own security chief has warned</a> millions of people who continue to use Internet Explorer as their main web browser that they are placing themselves in “peril.”
         {% endtrans %}
       </p>
 
@@ -201,7 +201,7 @@
       <p>
         {% trans pocket='href="%s" data-cta-type="link" data-cta-name="Pocket"'|safe|format(url('firefox.pocket')),
                  products='href="%s" data-cta-type="link" data-cta-name="our other Firefox products"'|safe|format(url('firefox')) %}
-        On the other end of the spectrum, Firefox is one of the most frequently updated browsers, and comes loaded with lots of useful and interesting features, like <a {{ pocket }}>Pocket</a> that suggests interesting content every time you open a new tab. Our unified search and web address bar, or <em>Awesome Bar</em> as we call it, also gives you suggestions based on your existing bookmarks and tags, history, open tabs, and popular searches. And with a free Firefox account you also get access to all your settings and <a {{ products }}>our other Firefox products</a> on any device simply by signing in. Plus with the peace of mind of knowing your browser is proactively working to protect your personal data.
+        On the other end of the spectrum, Firefox is one of the most frequently updated browsers, and comes loaded with lots of useful and interesting features, like <a {{ pocket }}>Pocket</a> that suggests interesting content every time you open a new tab. Our unified search and web address bar, or <em>Awesome Bar</em> as we call it, also gives you suggestions based on your existing bookmarks and tags, history, open tabs and popular searches. And with a free Firefox account you also get access to all your settings and <a {{ products }}>our other Firefox products</a> on any device simply by signing in. Plus the peace of mind of knowing your browser is proactively working to protect your personal data.
         {% endtrans %}
       </p>
 
@@ -281,7 +281,7 @@
 
       <p>
         {# Download link should be locale neutral. See issue #7982 #}
-        {# L10n: "Nana" is a common nickname for a grandmother in many English-speaking countries. Use a similar name for your language. #}
+        {# L10n: "Nana" is a common nickname for a grandmother in many English-speaking countries. Use a similar name for your language or culture. #}
         {% trans attrs='href="/firefox/download/thanks/" data-cta-type="link" data-cta-name="download Firefox"'|safe %}
         Our opinion is just to go with a trusted, private browser with a track record of delivering a great experience across devices. In a head-to-head comparison, it’s really no contest at all. Firefox is hands down the winner across all assessment categories. If you do find yourself at Nana’s house firing up Internet Explorer, maybe you want to do Nana a favor and <a {{ attrs }}>download Firefox</a> for her.
         {% endtrans %}

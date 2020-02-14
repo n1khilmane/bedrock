@@ -9,7 +9,7 @@
 {% block page_title %}{{ _('Firefox vs. Chrome: Which is better?') }}{% endblock %}
 
 {% block page_desc %}
-{{ _('We compare Mozilla Firefox with Google Chrome in terms of privacy, utility, and portability') }}
+{{ _('We compare Mozilla Firefox with Google Chrome in terms of privacy, utility and portability') }}
 {% endblock %}
 
 {% block page_css %}
@@ -64,7 +64,7 @@
       <table class="mzp-u-data-table compare-table compare-table--details">
           <thead>
             <tr>
-              <th>{{ _('Privacy') }}</th>
+              <th>{{ _('Security and Privacy') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
               <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
             </tr>
@@ -121,7 +121,7 @@
 
       <p>
         {% trans %}
-        While Chrome proves to be a safe web browser, its privacy record is questionable. Google actually collects a disturbingly large amount of data from its users including location, search history and site visits. Google makes its case for data collection saying it’s doing it to improve its services — like helping you find a sweater or a coffee shop like the one you previously bought or visited. However, others might disagree, making the point that Google is actually gathering an unprecedented amount of data for its own marketing purposes. They tout that they're keeping your information private from hackers, but that's beside the point. Google itself runs the world's largest advertising network, thanks in large part to data they harvest from their users.
+        While Chrome proves to be a safe web browser, its privacy record is questionable. Google actually collects a disturbingly large amount of data from its users including location, search history and site visits. Google makes its case for data collection saying it’s doing it to improve its services—like helping you find a sweater or a coffee shop like the one you previously bought or visited. However, others might disagree, making the point that Google is actually gathering an unprecedented amount of data for its own marketing purposes. They tout that they're keeping your information private from hackers, but that's beside the point. Google itself runs the world's largest advertising network, thanks in large part to data they harvest from their users.
         {% endtrans %}
       </p>
 
@@ -222,6 +222,7 @@
       </p>
 
       <p>
+        {# L10n: "gets the nod" here means Chrome is the winner. It's an idiom that indicates making a selection, like someone nodding their head in approval. #}
         {% trans %}
         While Chrome gets the nod with add-ons and extensions, Firefox has a nicely curated set of built-in features, such as the incredibly handy screen capture tool, and reading mode feature which strips away everything from the page except the text from the article you’re reading.
         {% endtrans %}
