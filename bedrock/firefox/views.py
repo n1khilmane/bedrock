@@ -726,7 +726,7 @@ def new(request):
         elif lang_file_is_active('firefox/new/trailhead', locale):
             template = 'firefox/new/trailhead/download.html'
         else:
-            template = 'firefox/new/download_quantum.html'
+            template = 'firefox/new/quantum/download.html'
 
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)
