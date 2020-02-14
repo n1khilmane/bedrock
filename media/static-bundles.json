@@ -135,13 +135,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-fxa-form.scss",
-        "css/firefox/new/scene1.scss"
-      ],
-      "name": "firefox_new_scene1"
-    },
-    {
-      "files": [
         "css/firefox/new/yandex-scene1.scss"
       ],
       "name": "firefox_new_scene1_yandex"

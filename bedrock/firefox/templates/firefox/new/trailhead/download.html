@@ -2,94 +2,41 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import google_play_button with context %}
-{% from "macros-protocol.html" import hero, picto_card with context %}
-
 {% add_lang_files "firefox/new/trailhead" %}
 
-{% extends "firefox/new/trailhead/base.html" %}
+{% extends "firefox/new/download.html" %}
 
-{% block extrahead %}
-  {{ super() }}
-  {{ css_bundle('firefox_new_download') }}
-{% endblock %}
+{% block experiments %}{% endblock %}
 
-{% block content %}
-<main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
-  {% if l10n_has_tag('firefox-new-skyline') %}
-    {% set tagline = _('Automatic privacy is here. Download Firefox to block over 2000 trackers.') %}
-  {% else %}
-    {% set tagline = _('And start getting the respect you deserve with our family of privacy-first products.') %}
-  {% endif %}
+{% block site_header %}{% endblock %}
 
-  {% call hero(
-    title=_('Get the latest Firefox browser.'),
-    desc=tagline,
-    class='mzp-has-image mzp-t-dark',
-    include_cta=True,
-    image_url='img/firefox/new/trailhead/browser-window.svg',
-    heading_level=1
-  ) %}
-    {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, download_location='primary cta') }}
+{% set hero_title = _('Get the latest Firefox browser.') %}
 
-    <ul class="small-links desktop">
-      <li><button class="platform-modal-button js-platform-modal-button hidden" type="button">{{_('Advanced install options & other platforms') }}</button></li>
-      <li><a href="{{ firefox_url('desktop', 'all') }}">{{_('Download in another language') }}</a></li>
-      <li><a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fix-problem-link">{{ _('Fix a problem') }}</a></li>
-    </ul>
+{% if l10n_has_tag('firefox-new-skyline') %}
+  {% set hero_tagline = _('Automatic privacy is here. Download Firefox to block over 2000 trackers.') %}
+  {% set card1_title = _('See what’s being blocked') %}
+  {% set card1_desc = _('Firefox shows you how many data-collecting trackers are blocked with <strong>Enhanced Tracking Protection</strong>.') %}
+  {% set card1_class = 'skyline-etp' %}
+  {% set card2_title = _('Make your passwords portable') %}
+  {% set card2_desc = _('<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox secure and available on all your devices.') %}
+  {% set card2_class = 'skyline-lockwise' %}
+  {% set card3_title = _('Watch for data breaches') %}
+  {% set card3_desc = _('<strong>Firefox Monitor</strong> alerts you if we know your information is a part of another company’s data breach.') %}
+  {% set card3_class = 'skyline-monitor' %}
+{% else %}
+  {% set hero_tagline = _('And start getting the respect you deserve with our family of privacy-first products.') %}
+  {% set card1_title = _('Join Firefox') %}
+  {% set card1_desc = _('Connect to a whole family of respectful products plus all the knowledge you need to protect yourself online.') %}
+  {% set card1_class = 'join' %}
+  {% set card2_title = _('Passwords made portable') %}
+  {% set card2_desc = _('<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox available on all your devices.') %}
+  {% set card2_class = 'lockwise' %}
+  {% set card3_title = _('Protect your privacy') %}
+  {% set card3_desc = _('<strong>Private Browsing</strong> clears your history to keep it secret from anyone who uses your computer.') %}
+  {% set card3_class = 'private' %}
+{% endif %}
 
-    <ul class="small-links android">
-      <li><a href="{{ firefox_url('android', 'all') }}">{{_('Download in another language') }}</a></li>
-      <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
-    </ul>
-
-    <ul class="small-links ios">
-      <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
-    </ul>
-  {% endcall %}
-  <section class="features">
-    <ul class="mzp-l-card-third mzp-l-content">
-      {% if l10n_has_tag('firefox-new-skyline') %}
-        {{ picto_card(title=_('See what’s being blocked'), desc=_('Firefox shows you how many data-collecting trackers are blocked with <strong>Enhanced Tracking Protection</strong>.'), class='skyline-etp') }}
-        {{ picto_card(title=_('Make your passwords portable'), desc=_('<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox secure and available on all your devices.'), class='skyline-lockwise') }}
-        {{ picto_card(title=_('Watch for data breaches'), desc=_('<strong>Firefox Monitor</strong> alerts you if we know your information is a part of another company’s data breach. '), class='skyline-monitor') }}
-      {% else %}
-        {{ picto_card(title=_('Join Firefox'), desc=_('Connect to a whole family of respectful products, plus all the knowledge you need to protect yourself online.'), class='join') }}
-        {{ picto_card(title=_('Passwords made portable'), desc=_('<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox available on all your devices.'), class='lockwise') }}
-        {{ picto_card(title=_('Protect your privacy'), desc=_('<strong>Private Browsing</strong> clears your history to keep it secret from anyone who uses your computer.'), class='private') }}
-      {% endif %}
-    </ul>
-  </section>
-</main>
-
-<aside class="mzp-u-modal-content other-platforms-content">
-    <section class="section-other-platforms">
-      <h4 class="other-platforms-title">{{ _('Advanced Install Options & Other Platforms') }}</h4>
-
-      {{ download_firefox_desktop_list(force_full_installer=True) }}
-
-      <ul class="other-platforms-mobile">
-        <li class="android">
-          {{ google_play_button(extra_data_attributes={'download-location': 'other'}) }}
-        </li>
-        <li class="ios">
-          <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
-            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section class="section-current-platform">
-      {# L10n: span's below are for visual formatting and line break. #}
-      <h4 class="other-platforms-title heading-windows">{{_('Download Firefox <br>for Windows') }}</h4>
-      <h4 class="other-platforms-title heading-mac">{{_('Download Firefox <br>for macOS') }}</h4>
-      <h4 class="other-platforms-title heading-linux">{{_('Download Firefox <br>for Linux') }}</h4>
-
-      {{ download_firefox(dom_id='download-other-platforms-modal', alt_copy=_('Download Now'), locale_in_transition=True, download_location='other') }}
-    </section>
-</aside>
-
+{% block aside %}
 {% if l10n_has_tag('join_firefox_072019') %}
 <aside class="mzp-u-modal-content join-firefox-content">
   {# L10n: The phrase “Now get even more from Firefox” is in specific reference to signing up for an account, which unlocks access to all our new products and services. #}
@@ -101,17 +48,14 @@
   {{ download_firefox(dom_id='download-join-firefox-modal', alt_copy=_('Just Download The Browser'), button_color='mzp-t-secondary', locale_in_transition=True, download_location='other') }}
 </aside>
 {% endif %}
+
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_new_download') }}
+  {{ super () }}
 
   {% if l10n_has_tag('join_firefox_072019') %}
     {{ js_bundle('firefox_new_download_join_modal') }}
-  {% endif %}
-
-  {% if switch('stub-attribution-macos') %}
-    {{ js_bundle('stub-attribution-macos') }}
   {% endif %}
 {% endblock %}
 

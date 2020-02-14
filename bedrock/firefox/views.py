@@ -723,8 +723,10 @@ def new(request):
     else:
         if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/yandex/scene1.html'
+        elif lang_file_is_active('firefox/new/trailhead', locale):
+            template = 'firefox/new/trailhead/download.html'
         else:
-            template = 'firefox/new/download.html'
+            template = 'firefox/new/download_quantum.html'
 
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)
