@@ -687,7 +687,7 @@ def download_thanks(request):
     elif locale == 'en-US' and experience == 'betterbrowser':
         template = 'firefox/campaign/better-browser/scene2.html'
     else:
-        template = 'firefox/new/thanks.html'
+        template = 'firefox/new/quantum/thanks.html'
 
     return l10n_utils.render(request, template, {'show_newsletter': show_newsletter})
 

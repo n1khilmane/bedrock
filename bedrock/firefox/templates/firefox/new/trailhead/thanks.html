@@ -6,43 +6,10 @@
 
 {% add_lang_files "firefox/new/trailhead" %}
 
-{% extends "firefox/new/trailhead/base.html" %}
+{% extends "firefox/new/base_thanks.html" %}
 
-{# "scene2" page should not be indexed to avoid it appearing in search results: issue 7024 #}
-{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
-{% block extrahead %}
-  {{ super() }}
-  {{ css_bundle('firefox_new_thanks') }}
-{% endblock %}
-
-{% block string_data %}
-  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
-{% endblock %}
-
-{% block site_header %}
-  {% with hide_nav_download_button=True %}
-    {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
-  {% endwith %}
-{% endblock %}
-
-{% block content %}
-<main role="main">
-  <div class="mzp-l-content">
-    <p class="c-notification t-warning unsupported">
-    {% trans url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista' %}
-      You’re using an insecure, outdated operating system <a href="{{ url }}">no longer supported by Firefox</a>.
-    {% endtrans %}
-    </p>
-    <p class="c-notification t-success auto-download">
-      {# fallback_url is replaced by the platform download link via JS, but if
-         something fails the user should still get a link to a working download path. #}
-
-      {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
-        Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
-      {% endtrans %}
-    </p>
-  </div>
+{% block main_content %}
 
   {% call call_out(
     title=_('Firefox is more than a browser.'),
@@ -50,9 +17,6 @@
     heading_level=1,
     include_cta=True
   ) %}
-    <div id="download-button-wrapper-desktop">
-      {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
-    </div>
   {% endcall %}
 
   <ul class="mzp-l-card-quarter mzp-l-content">
@@ -62,15 +26,5 @@
     {{ picto_card(desc=_('It’s <strong>a community</strong> that believes tech can do better. '), class='community') }}
   </ul>
 
-  <p class="mzp-l-content download-another-language-link">
-    <a href="{{ firefox_url('desktop', 'all') }}">{{_('Download in another language') }}</a>
-  </p>
-</main>
 {% endblock %}
 
-{% block js %}
-  {% if switch('tracking-pixel') %}
-    {{ js_bundle('firefox_new_pixel') }}
-  {% endif %}
-  {{ js_bundle('firefox_new_thanks') }}
-{% endblock %}
